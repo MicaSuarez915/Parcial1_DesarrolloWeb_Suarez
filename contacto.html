@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Micaela Suárez - Portfolio</title>
+  <link rel="stylesheet" href="estilos.css">
+  <script src="scripts.js"></script>
+</head>
+<body>
+  
+
+  <header>
+    <nav class="container">
+      <div class="brand">
+        <h2>FICHA PERSONAL</h2>
+      </div>
+
+        <button class="theme-btn" aria-label="Cambiar tema" onclick="toggleTheme()">
+          <span class="theme-icon">🌙</span>
+        </button>
+      
+    </nav>
+  </header>
+
+
+  <main class="container section">
+
+    <div>
+        <img 
+          src="assets/foto_personal.jpg" 
+          alt="Micaela Suárez" 
+          class="profile-img"
+        >
+      </div>
+
+    <section id="inicio" class="section text-center">
+      <div class="hero-content">
+        <h1>Micaela Suárez</h1>
+
+        <div class="category-grid">
+          <a class="category-item btn" href="home.html">Home</a>
+          <a class="category-item btn" href="https://micasuarez915.github.io/TPO_Desarrollo_Web_UADE/index.html">Local Comercial</a>
+          <a class="category-item btn" href="https://micasuarez915.github.io/Ejercicio3_Desarrollo_Web/index.html">Fan Page</a>
+          <a class="category-item btn" href="contacto.html" aria-current="page">Contacto</a>
+        </div>
+        
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Contacto</h2>
+      
+      <form id="contact-form" onsubmit="handleSubmit(event)">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <div class="form-group">
+            <label for="nombre">
+              Nombre completo <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="nombre" 
+              name="nombre" 
+              required 
+              placeholder="Ej: Juan Pérez"
+              autocomplete="name"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="email">
+              Email <span class="required">*</span>
+            </label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required 
+              placeholder="tu@email.com"
+              autocomplete="email"
+            >
+          </div>
+        </div>
+
+  
+        <div class="form-group">
+          <label for="mensaje">
+            Comentarios <span class="required">*</span>
+            <span style="color: var(--muted); font-weight: 400; font-size: 0.85rem;">
+              (<span id="char-count">0</span>/500 caracteres)
+            </span>
+          </label>
+          <textarea 
+            id="mensaje" 
+            name="mensaje" 
+            required 
+            placeholder="Contame sobre tu proyecto o consulta..."
+            maxlength="500"
+            oninput="updateCharCount()"
+          ></textarea>
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button type="submit" class="btn">📨 Enviar mensaje</button>
+          <button type="reset" class="btn outline">🔄 Limpiar formulario</button>
+        </div>
+
+        <p style="font-size: 0.85rem; color: var(--muted); margin-top: 1rem;">
+          Al enviar este formulario, aceptás que te contacte para responder tu consulta. 
+          Tus datos serán tratados de forma confidencial.
+        </p>
+      </form>
+    </section>
+
+  </main>
+
+ 
+  <footer>
+    <div class="container footer-content">
+    <p class="mb-0">© 2025 Micaela Suárez - Todos los derechos reservaods</p>
+    <a href="https://github.com/MicaSuarez915/Parcial1_DesarrolloWeb_Suarez" class="btn outline">Ver en Github</a>
+  </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+
+
+
+</body>
+</html>
