@@ -217,3 +217,99 @@ function initSmoothScroll() {
   });
 }
 
+
+// form-validation.js
+// Validación del formulario de contacto
+
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contact-form');
+  
+  // Verificar que el formulario existe antes de continuar
+  if (!form) return;
+  
+  const nombreInput = document.getElementById('nombre');
+  const emailInput = document.getElementById('email');
+  const mensajeTextarea = document.getElementById('mensaje');
+  const charCurrent = document.getElementById('char-current');
+  const formMessage = document.getElementById('form-message');
+
+  // Validación en tiempo real del nombre (solo letras)
+  if (nombreInput) {
+    nombreInput.addEventListener('input', function() {
+      // Verificar si hay números
+      if (/\d/.test(this.value)) {
+        this.setCustomValidity('El nombre no puede contener números');
+        this.reportValidity();
+      } else {
+        this.setCustomValidity('');
+      }
+    });
+  }
+
+  // Validación en tiempo real del email
+  if (emailInput) {
+    emailInput.addEventListener('blur', function() {
+      const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+      if (this.value && !emailPattern.test(this.value)) {
+        this.setCustomValidity('Por favor ingresá un email válido (ejemplo: nombre@dominio.com)');
+        this.reportValidity();
+      } else {
+        this.setCustomValidity('');
+      }
+    });
+
+    emailInput.addEventListener('input', function() {
+      this.setCustomValidity('');
+    });
+  }
+
+  // Contador de caracteres
+  if (mensajeTextarea && charCurrent) {
+    mensajeTextarea.addEventListener('input', function() {
+      charCurrent.textContent = this.value.length;
+    });
+  }
+
+  // Al enviar el formulario
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Verificar validación nativa del navegador
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    
+    // Mostrar mensaje de éxito
+    if (formMessage) {
+      formMessage.textContent = '✅ ¡MENSAJE ENVIADO CON ÉXITO! Te responderemos pronto.';
+      formMessage.className = 'form-message success';
+      formMessage.style.display = 'block';
+      formMessage.style.fontSize = '1.2rem';
+      formMessage.style.fontWeight = 'bold';
+      formMessage.style.textAlign = 'center';
+      formMessage.style.padding = '20px';
+      
+      // Scroll al mensaje
+      window.scrollTo({
+        top: formMessage.offsetTop - 100,
+        behavior: 'smooth'
+      });
+    }
+    
+    // También mostrar un alert por las dudas
+    alert('¡MENSAJE ENVIADO CON ÉXITO!\n\nTu mensaje ha sido enviado correctamente.\nTe responderemos pronto.');
+    
+    // Limpiar el formulario
+    setTimeout(function() {
+      form.reset();
+      if (charCurrent) charCurrent.textContent = '0';
+    }, 500);
+    
+    // Ocultar mensaje después de 10 segundos
+    setTimeout(function() {
+      if (formMessage) formMessage.style.display = 'none';
+    }, 10000);
+  });
+});
+
